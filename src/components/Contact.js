@@ -87,7 +87,7 @@ const Contact = ({ contact, contactKey }) => {
   // when the update icon/ pen ion is clicked
   const updateContact = () => {
     // dispatching one action to update contact
-    //TODO: DONE use dispatch to update
+    //TODO: use dispatch to update - DONE:
     dispatch({
       type: CONTACT_TO_UPDATE,
       payload: contact,
@@ -101,7 +101,7 @@ const Contact = ({ contact, contactKey }) => {
   // to view a single contact in the contact/view screen
   const viewSingleContact = (contact) => {
     // setting single contact in state
-    //TODO: use dispatch to view single contact
+    //TODO: use dispatch to view single contact - DONE:
     dispatch({
       type: SET_SINGLE_CONTACT,
       payload: contact,
