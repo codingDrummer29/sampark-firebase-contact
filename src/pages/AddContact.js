@@ -296,6 +296,18 @@ const AddContact = () => {
                 <span className="text-right">Mark as Star</span>
               </Label>
             </FormGroup>
+            <FormGroup check>
+              <Label check>
+                <Input
+                  type="checkbox"
+                  onChange={() => {
+                    setCheck(!check);
+                  }}
+                  checked={check}
+                />{" "}
+                <span className="text-right">Mark as Active</span>
+              </Label>
+            </FormGroup>
             <Button
               type="submit"
               color="primary"
