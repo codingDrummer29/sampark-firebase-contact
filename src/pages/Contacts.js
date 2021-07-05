@@ -19,11 +19,11 @@ const Contacts = () => {
   // handle fab icon button click
   // will set in state of the contact to update and send it to the contact/add route
   const AddContact = () => {
-    //TODO: use dispatch to send user to add contact screen
+    //TODO: use dispatch to send user to add contact screen - DONE:
     dispatch({
       type: CONTACT_TO_UPDATE,
       payload: null,
-      key: null
+      key: null,
     });
     history.push("/contact/add");
   };
@@ -40,7 +40,7 @@ const Contacts = () => {
 
   return (
     <Container className="mt-4">
-      {/* TODO: Loop through FIREBASE objects  */}
+      {/* TODO: Loop through FIREBASE objects - DONE: */}
       {contacts.length === 0 && !isLoading ? (
         <div className="Center text-large text-primary">
           NO Contacts found in firebase
