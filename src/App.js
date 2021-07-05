@@ -15,7 +15,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 // firebase stuffs
-//TODO: DONE import firebase config and firebase database
+//TODO: import firebase config and firebase database - DONE:
 import { firebaseConfig } from "./utils/config";
 import firebase from "firebase/app";
 import "firebase/database";
@@ -30,13 +30,13 @@ import ViewContact from "./pages/ViewContact";
 import PageNotFound from "./pages/PageNotFound";
 
 // context api stuffs
-//TODO: DONE  import reducers and contexts
+//TODO: import reducers and contexts - DONE:
 import reducer from "./context/reducer";
 import { ContactContext } from "./context/Context";
 import { SET_CONTACT, SET_LOADING } from "./context/action.types";
 
 //initlizeing firebase app with the firebase config which are in ./utils/firebaseConfig
-//TODO:DONE  initialize FIREBASE
+//TODO: initialize FIREBASE - DONE:
 firebase.initializeApp(firebaseConfig);
 
 // first state to provide in react reducer
@@ -53,7 +53,7 @@ const App = () => {
 
   // will get contacts from firebase and set it on state contacts array
   const getContacts = async () => {
-    // TODO: load existing data
+    // TODO: load existing data - DONE:
     dispatch({
       type: SET_LOADING,
       payload: true,
