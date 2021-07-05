@@ -54,6 +54,7 @@ const AddContact = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState(null);
   const [star, setStar] = useState(false);
+  const [check, setCheck] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
 
   // when their is the contact to update in the Context state
@@ -66,6 +67,7 @@ const AddContact = () => {
       setPhoneNumber(contactToUpdate.phoneNumber);
       setAddress(contactToUpdate.address);
       setStar(contactToUpdate.star);
+      setCheck(contactToUpdate.check);
       setDownloadUrl(contactToUpdate.picture);
 
       // also setting is update to true to make the update action instead the addContact action
@@ -150,7 +152,7 @@ const AddContact = () => {
 
   // setting contact to firebase DB
   const addContact = async () => {
-    //TODO: add contact method
+    //TODO: add contact method - DONE:
     try {
       firebase
         .database()
@@ -162,15 +164,16 @@ const AddContact = () => {
           address,
           picture: downloadUrl,
           star,
+          check,
         });
     } catch (error) {
-      console.log(error);
+      console.log("AddContact.js> addContact", error);
     }
   };
 
   // to handle update the contact when there is contact in state and the user had came from clicking the contact update icon
   const updateContact = async () => {
-    //TODO: update contact method
+    //TODO: update contact method - DONE:
     try {
       firebase
         .database()
@@ -182,9 +185,10 @@ const AddContact = () => {
           address,
           picture: downloadUrl,
           star,
+          check,
         });
     } catch (error) {
-      console.log(error);
+      console.log("AddContact.js> updateContact", error);
       toast("Oppss..", { type: "error" });
     }
   };
