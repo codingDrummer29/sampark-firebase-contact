@@ -22,7 +22,7 @@ import {
 import { readAndCompressImage } from "browser-image-resizer";
 
 // configs for image resizing
-//TODO: DONE add image configurations
+//TODO: add image configurations - DONE:
 import { imageConfig } from "../utils/config";
 
 import { MdAddCircleOutline } from "react-icons/md";
@@ -75,46 +75,64 @@ const AddContact = () => {
 
   // To upload image to firebase and then set the the image link in the state of the app
   const imagePicker = async (e) => {
-    // TODO: upload image and set D-URL to state
+    // TODO: upload image and set D-URL to state - DONE:
 
     try {
+      // 1st pick the file
       const file = e.target.files[0];
+      // files[0] is the address of the file
 
+      // 2nd have metadata: file type> extention
       var metadata = {
         contentType: file.type,
       };
 
+      // 3rd resize the grabbed image
       let resizedImage = await readAndCompressImage(file, imageConfig);
+      // this 3rd party method takes 2 parameters, thie image file and the configuration to do upon that
 
+      // 4th get the firebase storage path
       const storageRef = await firebase.storage().ref();
+
+      // 5th create the task
       var uploadTask = storageRef
         .child("images/" + file.name)
         .put(resizedImage, metadata);
 
+      // 6th working on the task
       uploadTask.on(
+        // 6-1 state change
         firebase.storage.TaskEvent.STATE_CHANGED,
+        // 6-2 snapshot
         (snapshot) => {
-          setIsUploading(true);
+          setIsUploading(true); // state var set to true
+          // 6-3 progress bar handled
           var progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
+          // 6-4 depending upon task state situations different switch-cases
           switch (snapshot.state) {
             case firebase.storage.TaskState.PAUSED:
               setIsUploading(false);
-              console.log("UPloading is paused");
+              console.log("AddContact.js> uploadTask: Uploading is paused");
               break;
             case firebase.storage.TaskState.RUNNING:
-              console.log("UPloading is in progress...");
+              console.log(
+                "AddContact.js> uploadTask: Uploading is in progress..."
+              );
               break;
           }
+          // 6-5 upon successfull completion notification handled
           if (progress === 100) {
             setIsUploading(false);
-            toast("uploaded", { type: "success" });
+            toast("Image Uploaded", { type: "success" });
           }
         },
+        // 6-6 if snapshot throws any error
         (error) => {
           toast("something is wrong in state change", { type: "error" });
         },
+        // image uploaded to firebase, now state var need to be set
+        // 6-7 handling everything getting a download url for future porocessing of the image
         () => {
           uploadTask.snapshot.ref
             .getDownloadURL()
@@ -125,7 +143,7 @@ const AddContact = () => {
         }
       );
     } catch (error) {
-      console.error(error);
+      console.error("AddContact.js imagePicker()", error);
       toast("Something went wrong", { type: "error" });
     }
   };
