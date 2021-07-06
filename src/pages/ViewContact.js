@@ -7,27 +7,23 @@ import {
   Card,
   CardBody,
   CardTitle,
-  CardSubtitle,
-  CardImg,
+  CardSubtitle
 } from "reactstrap";
 import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import { ContactContext } from "../context/Context";
-import { Link } from "react-router-dom";
 
 const ViewContact = () => {
   const { state } = useContext(ContactContext);
   // destructuring contact from the state
   // and rendering it in state
-
-  const { contact } = state;
-
+  //FIXME: destructure contact from state
   return (
     <Container>
       <Row className="mt-5 mb-5">
         <Col md="5" className="offset-md-3">
           <Card className="pt-3 pb-5">
             <CardBody className="text-center ">
-              <CardImg
+              <img
                 height="150"
                 width="150"
                 className="cardImg profile border-danger"
@@ -42,24 +38,23 @@ const ViewContact = () => {
                   {contact?.phoneNumber}
                 </h3>
               </CardSubtitle>
-              <Link
+              <a
                 className="btn btn-primary btn-block"
                 target="_blank"
                 href={`mailto:{contact?.email}`}
               >
                 <FaEnvelope className="icon mr-2" />
                 {contact?.email}
-              </Link>
+              </a>
 
-              <Link
+              <a
                 className="btn btn-primary btn-block"
                 target="_blank"
                 //TODO: add google maps
-                href={`https://maps.google.com/?=${contact?.address}`}
               >
                 <FaMapMarkerAlt className="icon mr-2" />
                 {contact?.address}
-              </Link>
+              </a>
             </CardBody>
           </Card>
         </Col>

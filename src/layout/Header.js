@@ -1,4 +1,4 @@
-//TODO: set NavbarBrand to go to home page and export Header - DONE:
+//TODO: set NavbarBrand to go to home page and export Header
 
 import React from "react";
 import { Navbar, NavbarBrand, NavbarText } from "reactstrap";
@@ -7,14 +7,10 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <Navbar color="info" light>
-      <NavbarBrand tag={Link} to="/" className="text-white text-capitalize">
-        Sampark
-      </NavbarBrand>
+      <NavbarBrand className="text-white">LCO Contact App</NavbarBrand>
       <NavbarText className="text-white float-right">
-        Personal Contact app
+        A simple Contact app
       </NavbarText>
     </Navbar>
   );
 };
-
-export default Header;

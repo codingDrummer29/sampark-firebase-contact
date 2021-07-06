@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useReducer, useEffect } from "react";
 
 import { Container, Col, Row } from "reactstrap";
@@ -15,11 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 // firebase stuffs
-//TODO: import firebase config and firebase database - DONE:
-import { firebaseConfig } from "./utils/config";
-import firebase from "firebase/app";
-import "firebase/database";
-import "firebase/storage";
+//TODO: import firebase config and firebase database
 
 // components
 import AddContact from "./pages/AddContact";
@@ -30,14 +25,10 @@ import ViewContact from "./pages/ViewContact";
 import PageNotFound from "./pages/PageNotFound";
 
 // context api stuffs
-//TODO: import reducers and contexts - DONE:
-import reducer from "./context/reducer";
-import { ContactContext } from "./context/Context";
-import { SET_CONTACT, SET_LOADING } from "./context/action.types";
+//TODO: import reducers and contexts
 
 //initlizeing firebase app with the firebase config which are in ./utils/firebaseConfig
-//TODO: initialize FIREBASE - DONE:
-firebase.initializeApp(firebaseConfig);
+//TODO: initialize FIREBASE
 
 // first state to provide in react reducer
 const initialState = {
@@ -45,7 +36,7 @@ const initialState = {
   contact: {},
   contactToUpdate: null,
   contactToUpdateKey: null,
-  isLoading: false,
+  isLoading: false
 };
 
 const App = () => {
@@ -53,33 +44,18 @@ const App = () => {
 
   // will get contacts from firebase and set it on state contacts array
   const getContacts = async () => {
-    // TODO: load existing data - DONE:
-    dispatch({
-      type: SET_LOADING,
-      payload: true,
-    });
-
-    const contactsRef = await firebase.database().ref("/contacts");
-    contactsRef.on("value", (snapshot) => {
-      dispatch({
-        type: SET_CONTACT,
-        payload: snapshot.val(),
-      });
-      dispatch({
-        type: SET_LOADING,
-        payload: false,
-      });
-    });
+    // TODO: load existing data
   };
 
   // getting contact  when component did mount
   useEffect(() => {
-    getContacts();
+    //FIXME: call methods if needed
   }, []);
 
   return (
     <Router>
-      <ContactContext.Provider value={{ state, dispatch }}>
+      {/* FIXME: Provider is not configured */}
+      <ContactContext.Provider>
         <ToastContainer />
         <Header />
         <Container>
