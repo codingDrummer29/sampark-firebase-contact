@@ -23,7 +23,7 @@ import { readAndCompressImage } from "browser-image-resizer";
 //TODO: add image configurations - DONE:
 import { imageConfig } from "../utils/config";
 
-import { MdAddCircleOutline } from "react-icons/md";
+// import { MdAddCircleOutline } from "react-icons/md";
 
 import { v4 } from "uuid";
 
@@ -162,7 +162,7 @@ const AddContact = () => {
 
   // to handle update the contact when there is contact in state and the user had came from clicking the contact update icon
   const updateContact = async () => {
-    //TODO: update contact method
+    //TODO: update contact method - DONE:
     try {
       firebase
         .database()
@@ -186,7 +186,12 @@ const AddContact = () => {
 
     // isUpdate wll be true when the user came to update the contact
     // when their is contact then updating and when no contact to update then adding contact
-    //TODO: set isUpdate value
+    //TODO: set isUpdate value - DONE:
+    isUpdate ? updateContact() : addContact();
+
+    toast("Success saving the contact", {
+      type: "success",
+    });
 
     // to handle the bug when the user visit again to add contact directly by visiting the link
     dispatch({
