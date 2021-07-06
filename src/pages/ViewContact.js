@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-no-target-blank */
 import React, { useContext } from "react";
 
 import {
@@ -7,7 +9,7 @@ import {
   Card,
   CardBody,
   CardTitle,
-  CardSubtitle
+  CardSubtitle,
 } from "reactstrap";
 import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import { ContactContext } from "../context/Context";
@@ -16,18 +18,22 @@ const ViewContact = () => {
   const { state } = useContext(ContactContext);
   // destructuring contact from the state
   // and rendering it in state
-  //FIXME: destructure contact from state
+  //FIXME: destructure contact from state - DONE:
+  const { contact } = state;
+  console.log(contact);
+
   return (
     <Container>
       <Row className="mt-5 mb-5">
         <Col md="5" className="offset-md-3">
           <Card className="pt-3 pb-5">
             <CardBody className="text-center ">
-              <img
+              <image
                 height="150"
                 width="150"
                 className="cardImg profile border-danger"
                 src={contact?.picture}
+                alt="Image goes here"
               />
               <CardTitle className="text-primary mt-3">
                 <h1>{contact?.name}</h1>

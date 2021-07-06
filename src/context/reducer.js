@@ -11,7 +11,7 @@ import {
 } from "./action.types";
 
 //TODO: use switch case - DONE:
-export default () => {
+export default (state, action) => {
   switch (action.type) {
     case SET_CONTACT:
       return action.payload == null
@@ -31,8 +31,7 @@ export default () => {
     case SET_SINGLE_CONTACT:
       return {
         ...state,
-        contact: action,
-        payload,
+        contact: action.payload,
       };
 
     default:
